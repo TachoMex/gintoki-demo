@@ -11,11 +11,9 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
+ *
 
-/* ----------------
- * LEGAL NOTICE
- * ----------------
+#LEGAL NOTICE
  *
  * This game is NOT related to Gintama in any way. Also,
  * this game characters are property of Hideaki Sorachi.
