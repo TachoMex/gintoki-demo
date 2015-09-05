@@ -20,7 +20,5 @@
  * This game is NOT related to Gintama in any way. Also,
  * this game characters are property of Hideaki Sorachi.
  *
- * The new SDL code is written by Gatuno, and is released under
- * the term of the GNU General Public License.
  
 
