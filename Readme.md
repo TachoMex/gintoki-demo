@@ -17,6 +17,6 @@
  *
  * This game is NOT related to Gintama in any way. Also,
  * this game characters are property of Hideaki Sorachi.
- *
+ * The music is composed by Kamagata Eiichi
  
 

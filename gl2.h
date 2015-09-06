@@ -2,6 +2,7 @@
 #define GL2_H
 #include <GL/freeglut.h>
 #include <GL/gl.h>
+#include <SDL/SDL.h>
 #include <vector>
 
 

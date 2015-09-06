@@ -5,6 +5,9 @@
 #include <string>
 #include "imagen/gestor.h"
 
+#define MUSIC_GAME8b "music8b.ogg"
+#define MUSIC_GAME "music.ogg"
+
 const int jugador_x = 25;
 const int jugador_y = 57;
 

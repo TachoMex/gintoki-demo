@@ -5,17 +5,17 @@
 #include "jugador.h"
 #include "muro.h"
 #include <vector>
+#include <SDL/SDL_mixer.h>
 
-#include <SFML/Audio.hpp>
 
 
 
 
 class Juego{
 public:
+	Mix_Music * musica;
 	Jugador * jugador;
 	_2D::Scroll * scroll;
-	sf::Music music;
 	Temporizador cronometro;
 	std::vector<Gadget*> gadgets;
 	void evento(unsigned char);
@@ -63,7 +63,7 @@ void Juego::iterar(){
 
 
 		glFlush();
-		glutSwapBuffers();
+		SDL_GL_SwapBuffers();
 		scroll->colocaCamaraOGL(); 
 		cronometro.reiniciar();
 	}
@@ -74,9 +74,7 @@ void Juego::inicializaJuego(int mapax, int mapay){
 	jugador = new Jugador(_2D::Rectangulo<double>(_2D::Punto<double>(0,30), jugador_x, jugador_y), fondo_renders, _2D::Punto<double>(),v_grav );
 	gadgets.push_back(new Muro(_2D::Rectangulo<double>(_2D::Punto<double>(0,0),4*SCREEN_X,30)));
 	gadgets.push_back(new Muro(_2D::Rectangulo<double>(_2D::Punto<double>(0,40+jugador_y),SCREEN_X,30)));
-	music.openFromFile("music.ogg");
-	music.setLoop(true);
-	music.play();
+	musica = Mix_LoadMUS(MUSIC_GAME);
 }
 
 #endif
