@@ -70,15 +70,13 @@ bool resuelve_evento(const SDL_Event& evento){
 
 int main(int argc, char** argv){ 
 	cargaRenders();
-
-
 	juego = new Juego();
-	juego->inicializaJuego(SCREEN_X*4, SCREEN_Y);
 	SDL_Event evento;
     if(SDL_SetVideoMode (SCREEN_X, SCREEN_Y, 16, SDL_OPENGL) == NULL){
     	cout<<"Error al inicializar el modo de video"<<endl;
     	return 1;
     }
+	juego->inicializaJuego(SCREEN_X*4, SCREEN_Y);
     bool salir = false;
     Mix_OpenAudio(22050, MIX_DEFAULT_FORMAT, 2, 4096);
     while(not salir){

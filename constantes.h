@@ -13,7 +13,8 @@ const int jugador_y = 57;
 
 Color fondo_renders;
 
-const _2D::Punto<double> v_mov(8,0);
+const _2D::Punto<double> v_mov(1,0);
+const _2D::Punto<double> v_mov_max(8,0);
 const _2D::Punto<double> v_salto(0,30);
 const _2D::Punto<double> v_grav(0,-2);
 const _2D::Punto<double> v_friccion(0.7,0.7);
@@ -27,6 +28,9 @@ const int DERECHA = 1;
 const int SCREEN_X = 400;
 const int SCREEN_Y = 300;
 const char * WINDOW_NAME = "Gintama";
+
+const int NIEVE_X = 28;
+const int NIEVE_Y = 25;
 
 GestorImagenes renders = GestorImagenes();
 
@@ -63,6 +67,7 @@ Imagen* GINTOKI_GOLPE5 = new Imagen();
 Imagen* GINTOKI_GOLPE6 = new Imagen();
 Imagen* GINTOKI_GOLPE7 = new Imagen();
 
+Imagen* NIEVE = new Imagen(); 
 
 
 
@@ -100,13 +105,9 @@ void cargaRenders(){
 	renders["Gintoki.bmp"]->region(512,1845,jugador_x+30,jugador_y,GINTOKI_GOLPE5);
 	renders["Gintoki.bmp"]->region(574,1845,jugador_x+2,jugador_y,GINTOKI_GOLPE6);
 	renders["Gintoki.bmp"]->region(609,1845,jugador_x,jugador_y,GINTOKI_GOLPE7);
-	GINTOKI_GOLPE1->guardaBMP("paso1.bmp");
-	GINTOKI_GOLPE2->guardaBMP("paso2.bmp");
-	GINTOKI_GOLPE3->guardaBMP("paso3.bmp");
-	GINTOKI_GOLPE4->guardaBMP("paso4.bmp");
-	GINTOKI_GOLPE5->guardaBMP("paso5.bmp");
-	GINTOKI_GOLPE6->guardaBMP("paso6.bmp");
-	GINTOKI_GOLPE7->guardaBMP("paso7.bmp");
+
+	renders["Gintoki.bmp"]->region(310,866, NIEVE_X, NIEVE_Y, NIEVE);
+
 
 	delete renders["Gintoki.bmp"];
 }

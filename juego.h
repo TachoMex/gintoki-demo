@@ -4,6 +4,7 @@
 #include "temporizador.h"
 #include "jugador.h"
 #include "muro.h"
+#include "nieve.h"
 #include <vector>
 #include <SDL/SDL_mixer.h>
 
@@ -50,7 +51,10 @@ void Juego::iterar(){
 				g->dibujar();
 			}
 		}
+
+
 		jugador->dibujar();
+		std::cout<<jugador->posicion.toString()<<"::"<<jugador->velocidad.toString()<<std::endl;
 		jugador->iterar();
 		jugador->limitar(scroll->area);
 		jugador->aplicarFriccion(v_friccion);
@@ -74,6 +78,11 @@ void Juego::inicializaJuego(int mapax, int mapay){
 	jugador = new Jugador(_2D::Rectangulo<double>(_2D::Punto<double>(0,30), jugador_x, jugador_y), fondo_renders, _2D::Punto<double>(),v_grav );
 	gadgets.push_back(new Muro(_2D::Rectangulo<double>(_2D::Punto<double>(0,0),4*SCREEN_X,30)));
 	gadgets.push_back(new Muro(_2D::Rectangulo<double>(_2D::Punto<double>(0,40+jugador_y),SCREEN_X,30)));
+	gadgets.push_back(new Muro(_2D::Rectangulo<double>(_2D::Punto<double>(2*SCREEN_X,40+jugador_y),SCREEN_X,30)));
+	gadgets.push_back(new Muro(_2D::Rectangulo<double>(_2D::Punto<double>(2*SCREEN_X-50,30),30,30)));
+
+	gadgets.push_back(new Nieve(_2D::Punto<double>(450, 40)));
+	gadgets.push_back(new Nieve(_2D::Punto<double>(650, 40)));
 	musica = Mix_LoadMUS(MUSIC_GAME);
 }
 

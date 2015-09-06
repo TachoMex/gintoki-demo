@@ -161,7 +161,10 @@ void Jugador::izquierda(){
 	if((estado_render > ESTADO_CORRIENDO_FIN or estado_render < ESTADO_CORRIENDO) and suelo){
 		estado_render = ESTADO_CORRIENDO;
 	}
-	this->velocidad.x=-v_mov.x;
+	if(std::abs(this->velocidad.x-v_mov.x)<v_mov_max.x){
+		this->velocidad.x-=v_mov.x;
+	}
+
 	orientacion_ = IZQUIERDA;
 }
 
@@ -171,7 +174,10 @@ void Jugador::derecha(){
 	if((estado_render > ESTADO_CORRIENDO_FIN or estado_render < ESTADO_CORRIENDO) and suelo){
 		estado_render = ESTADO_CORRIENDO;
 	}
-	this->velocidad.x=v_mov.x;
+	if(std::abs(this->velocidad.x+v_mov.x)<v_mov_max.x){
+		this->velocidad.x+=v_mov.x;
+	}
+
 	this->orientacion_ = DERECHA;
 }
 

@@ -22,6 +22,7 @@ void Muro::colisionConJugador(Jugador* j){
 	auto ruta = j->desplazamiento();
 	auto ruta2 = j->desplazamientoSuperior();
 	int caso = ladoColision(j, this->posicion);
+	std::cout<<caso<<std::endl;
 	switch(caso){
 		case 1:
 			dif = ruta.fin.y - this->posicion.fin.y;

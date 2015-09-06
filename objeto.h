@@ -112,7 +112,9 @@ namespace _2D{
 		double prof_y = std::min(o->posicion.fin.y,rec.fin.y) - std::max(o->posicion.inicio.y,rec.inicio.y);
 		
 		bool izquierda = o->posicion.fin.x < rec.fin.x;
+		bool derecha = o->posicion.inicio.x > rec.inicio.x;
 		bool abajo =  o->posicion.fin.y < rec.fin.y;
+		bool arriba = o->posicion.inicio.y > rec.inicio.y;
 
 		if(prof_x < 0 or prof_y < 0){
 			return -1;
@@ -133,21 +135,21 @@ namespace _2D{
 				}else if(o->velocidad.y < 0){
 					return 4;
 				}
-			}else{
+			}else if(arriba){
 				if(o->velocidad.x < 0){
 					return 1;
 				}else if(o->velocidad.y > 0){
 					return 4;
 				}
 			}
-		}else{
+		}else if(derecha){
 			if(abajo){
 				if(o->velocidad.x > 0){
 					return 3;
 				}else if(o->velocidad.y < 0){
 					return 2;
 				}
-			}else{
+			}else if(arriba){
 				if(o->velocidad.x > 0){
 					return 1;
 				}else if(o->velocidad.y > 0){
@@ -156,21 +158,23 @@ namespace _2D{
 			}
 		}
 		Linea<double> lado;
+		std::cout<<"----";
 		if(o->velocidad.x > 0){
 			if(o->velocidad.y > 0){
 				lado = Linea<double>(o->posicionAnterior,o->posicion.fin);
 				return lado.colisiona(rec.lado4())?4:3;
 			}else if(o->velocidad.y < 0){
-				lado = Linea<double>(Punto<double>(o->posicionAnterior.x,o->posicionAnterior.y+o->posicion.altura()),Punto<double>(o->posicion.fin.x,o->posicion.inicio.y));
-				return lado.colisiona(rec.lado4())?4:1;
+				std::cout<<"::::";
+				lado = Linea<double>(Punto<double>(o->posicionAnterior.x+o->posicion.base(), o->posicionAnterior.y), Punto<double>(o->posicion.fin.x, o->posicion.inicio.y));
+				return lado.colisiona(rec.lado1()) and o->posicionAnterior.y >= rec.fin.y?1:4;
 			}
 		}else if(o->velocidad.x < 0){ 
 			if(o->velocidad.y > 0){
 				lado = Linea<double>(Punto<double>(o->posicionAnterior.x+o->posicion.base(),o->posicionAnterior.y),Punto<double>(o->posicion.inicio.x,o->posicion.fin.y));				
 				return lado.colisiona(rec.lado2())?2:3;
 			}else if(o->velocidad.y < 0){
-				lado = Linea<double>(Punto<double>(o->posicionAnterior.x+o->posicion.base(),o->posicionAnterior.y+o->posicion.altura()),o->posicion.inicio);				
-				return lado.colisiona(rec.lado2())?2:1;
+				lado = Linea<double>(o->posicionAnterior,o->posicion.inicio);				
+				return lado.colisiona(rec.lado1()) and o->posicionAnterior.y >= rec.fin.y?1:2;
 			}
 		}
 		return -1;
